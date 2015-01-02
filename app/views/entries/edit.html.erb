@@ -5,11 +5,11 @@
 <main>
 <%= content_tag :div, class: "big-form" do %>
 <h1 class='big-form-banner'>Edit Entry</h1>
-<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', current_admin.portfolio %></p>
+<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', portfolios_path %></p>
 <% @entry.errors.full_messages.each do |msg| %>
   <p class='form-error-message'><%= msg %></p>
 <% end %>
-<%= form_for [@portfolio, @entry] do |f| %>
+<%= form_for @entry do |f| %>
   <p class='big-form-text'><%= f.text_field :title, placeholder: 'Title' %></p> Link to interior page? <%= f.check_box :title_link %>
   <p>Link to external URL? <%= f.check_box :external_title_link %></p>
 
@@ -38,6 +38,6 @@
   <p>Pin entry to the top of column? <%= f.check_box :sticky %></p>
   <p><%= f.submit %></p>
 <% end %>
-<%= button_to'Delete Entry', portfolio_entry_path(@portfolio, @entry), method: :delete, data: { confirm: "Are you sure you want to delete '#{@entry.title}'?" }, class: 'delete-link' %>
+<%= button_to'Delete Entry', entry_path(@entry), method: :delete, data: { confirm: "Are you sure you want to delete '#{@entry.title}'?" }, class: 'delete-link' %>
 <% end %>
 </main>

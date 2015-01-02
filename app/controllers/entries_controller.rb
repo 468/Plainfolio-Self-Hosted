@@ -5,7 +5,7 @@ class EntriesController < ApplicationController
  rescue_from ActiveRecord::RecordNotFound, with: :entry_not_found
 
   def entry_not_found
-    redirect_to portfolio_path(@portfolio), flash: { error: "Entry not found." }
+    redirect_to portfolios_path, flash: { error: "Entry not found." }
   end
 
   def new
@@ -21,7 +21,7 @@ class EntriesController < ApplicationController
     @entry.portfolio = @portfolio
   	if @entry.portfolio == current_admin.portfolio && @entry.save
       flash[:notice] = "Entry created."
-  	  redirect_to portfolio_path(@portfolio)
+  	  redirect_to portfolios_path
   	else
       flash.now[:error] = @entry.errors.empty? ? "Error creating entry" : @entry.errors.full_messages.to_sentence
       if current_admin
@@ -31,9 +31,11 @@ class EntriesController < ApplicationController
   end
 
   def show
+    get_columns
     @entry = @portfolio.entries.find(params[:title])
     get_tags
     @column = @entry.column
+
     @first_column = @portfolio.columns.first
     @first_column_entries = @first_column.entries.includes(:tags).order('id DESC')
   end
@@ -48,7 +50,7 @@ class EntriesController < ApplicationController
     get_tags
     @column = @entry.column
     if @entry.update(entry_params)
-      redirect_to portfolio_entry_path(@portfolio, @entry)
+      redirect_to entry_path(@entry)
       flash[:notice] = "Entry successfully updated"
     else
       flash.now[:error] = @entry.errors.empty? ? "Error updating entry" : @entry.errors.full_messages.to_sentence
@@ -73,10 +75,10 @@ class EntriesController < ApplicationController
     get_entry
     if @entry.destroy
       flash[:notice] = "Entry deleted"
-      redirect_to @portfolio
+      redirect_to portfolios_path
     else
       flash[:error] = "Error deleting entry"
-      redirect_to @portfolio
+      redirect_to portfolios_path
     end
   end
 

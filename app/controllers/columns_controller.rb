@@ -6,10 +6,10 @@ class ColumnsController < ApplicationController
     @column = @portfolio.columns.find(params[:id])
     respond_to do |format|
       if @column.update(column_params)
-        format.html { redirect_to(@portfolio, notice: 'Column was successfully updated.') }
+        format.html { redirect_to(portfolios_path, notice: 'Column was successfully updated.') }
         format.json { respond_with_bip(@column) }
       else
-        format.html { redirect_to portfolio_path(@portfolio), flash: { error: @column.errors.empty? ? "Error" : @column.errors.full_messages.to_sentence } }
+        format.html { redirect_to portfolios_path, flash: { error: @column.errors.empty? ? "Error" : @column.errors.full_messages.to_sentence } }
         format.json { respond_with_bip(@column) }
       end
     end
@@ -23,7 +23,7 @@ class ColumnsController < ApplicationController
         format.js {render 'toggle_show', locals: { column: @column, showing: @column.show } }
       end
     else
-      redirect_to portfolio_path(@portfolio)
+      redirect_to portfolios_path
       flash[:error] = "Column show setting could not be toggled."
     end
   end
@@ -34,10 +34,10 @@ class ColumnsController < ApplicationController
     new_position = params[:new_position]
     column_to_replace = @portfolio.columns.find_by_position(new_position)
     if column.change_column_positions(old_position, new_position, column_to_replace)
-      redirect_to portfolio_path(@portfolio)
+      redirect_to portfolios_path
       flash[:notice] = "Column position changed."
     else
-      redirect_to portfolio_path(@portfolio)
+      redirect_to portfolios_path
       flash[:error] = "Error moving column."
     end
   end

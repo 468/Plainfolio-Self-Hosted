@@ -29,7 +29,7 @@
       <p><%= f.label :pdf_enabled, 'PDF Download enabled?' %> <%= f.check_box :pdf_enabled %></p>
       <p><%= f.label :rss_enabled, 'RSS Feed enabled?' %> <%= f.check_box :rss_enabled %></p>
       <p><%= link_to 'View JSON', portfolio_url(@portfolio) + ".json" %></p>
-      <p><i class='fa fa-save'></i> <%= link_to "Export as .csv file", portfolio_path(portfolio) + '.csv' %></p>
+      <p><i class='fa fa-save'></i> <%= link_to "Export as .csv file", csv_path %></p>
       <p><%= f.submit 'Save' %></p>
     <% end %>
   <%# end %>
@@ -42,4 +42,4 @@
   <% end %>
 <% end %>
 
-<%= link_to 'Preview', portfolio_path(@portfolio, :preview => "true"), class: 'btn', id: 'portfolio-preview-btn', target: '_blank' %>
+<%= link_to 'Preview', root_path(:preview => "true"), class: 'btn', id: 'portfolio-preview-btn', target: '_blank' %>

@@ -14,7 +14,7 @@
         <%= render "column_title", portfolio: @portfolio, column: column, index: index %>
         <% if admin_signed_in? && !(params[:preview]) %>
           <%= render "column_settings", portfolio: @portfolio, column: column, first_column: @first_column %>
-          <%= link_to 'Add New Entry', new_portfolio_column_entry_path(@portfolio, column), class: 'new-entry btn' %>
+          <%= link_to 'Add New Entry', new_column_entry_path(column), class: 'new-entry btn' %>
           <% if column == @first_column %>
             <%= link_to 'Manage Tags', tags_path, class: 'btn' %>
             <%= render "portfolio_settings", portfolio: @portfolio, column: column %>

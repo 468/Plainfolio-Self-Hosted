@@ -11,7 +11,7 @@
   <p class='form-error-message'><%= msg %></p>
 <% end %>
 
-<%= form_for [@portfolio, @column, @entry] do |f| %>
+<%= form_for [@column, @entry] do |f| %>
   <p class='big-form-text'><%= f.text_field :title, placeholder: 'Title' %></p> Link title to interior page? <%= f.check_box :title_link %>
   <p>Link title to external URL? <%= f.check_box :external_title_link %></p>
   <%= content_tag :div, id: "external-url-form", class: (@entry.external_title_link ? nil : 'hidden-form')  do %>

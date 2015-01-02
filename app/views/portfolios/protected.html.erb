@@ -4,7 +4,7 @@
 
 <p>Please enter the password below.</p>
 
-<%= form_for :portfolio_password, :url => portfolio_password_submit_path(params[:portfolio_id]) do |f| %>
+<%= form_for :portfolio_password, :url => password_submit_path(params[:portfolio_id]) do |f| %>
   <p class='big-form-text'><%= f.password_field :portfolio_password, placeholder: "Password" %></p>
   <%= f.submit 'Submit' %>
 <% end %>

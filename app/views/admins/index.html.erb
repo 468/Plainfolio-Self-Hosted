@@ -4,7 +4,7 @@
     <h1 class='big-form-banner white'>Plainfolio</h1><br>
     <h1 class='big-form-banner'>Your Account</h1>
     <% if current_admin.portfolio.present? %>
-      <p class='big-text'><%= link_to 'Visit Your Portfolio', portfolio_path(current_admin.portfolio), id: 'user-portfolio-link' %></p>
+      <p class='big-text'><%= link_to 'Visit Your Portfolio', portfolios_path, id: 'user-portfolio-link' %></p>
     <% else %>
       <p class='big-text'><%= link_to 'Create Your Portfolio', new_portfolio_path, id: 'new-portfolio-link' %></p>
     <% end %>

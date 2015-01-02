@@ -7,12 +7,12 @@
   <%= content_tag :div, class: 'column fifth', id: "column-#{@first_column.id}" do %>
     <%= content_tag :div, class: "column-content" do %>
       <h1 id='portfolio-title'><%= @portfolio.title %></h1>
-      <h2><%= fa_icon 'home' %> <%= link_to 'Home', portfolio_path(@portfolio) %></h2>
+      <h2><%= fa_icon 'home' %> <%= link_to 'Home', portfolios_path %></h2>
       <h2 class='column-title'><%= @first_column.name %></h2>
       <% @first_column_entries.entries.each do |entry| %>
         <h3 class='entry-title'>
           <% if entry.title_link == true %>
-            <%= link_to entry.title, portfolio_entry_path(@portfolio, entry) %>
+            <%= link_to entry.title, entry_path(entry) %>
           <% elsif entry.external_title_link == true %>
             <%= link_to entry.title, entry.external_url, :target => '_blank' %>
     	    <% else %>
@@ -22,11 +22,11 @@
 
   		<% entry.tags.each do |tag| %>
     	  <%= content_tag :span, id: "tag-#{tag.id}", class: "tag" do %>
-          <%= link_to tag.name, portfolio_path(@portfolio, tag: tag.name) %>
+          <%= link_to tag.name, portfolios_path(tag: tag.name) %>
       	<% end %>
       <% end %>
   	  <p>
-	    entry.summary.html_safe %>
+	    <%= entry.summary.html_safe %>
 	  </p>
       <% end %>
     <% end %>
@@ -36,7 +36,7 @@
     <%= content_tag :div, class: "column-content" do %>
       <h2>
         <% if @entry.title_link == true %>
-          <%= link_to @entry.title, portfolio_entry_path(@portfolio, @entry) %>
+          <%= link_to @entry.title, entry_path(@entry) %>
         <% elsif @entry.external_title_link == true %>
           <%= link_to @entry.title, @entry.external_url, :target => '_blank' %>
         <% else %>
@@ -46,16 +46,16 @@
       <% @entry.tags.each do |tag| %>
         <%= content_tag :span, id: "tag-#{tag.id}", class: "tag" do %>
           <% if params[:tag] && params[:tag] == tag.name %>
-            <%= link_to "#{tag.name} (<i class='fa fa-times'></i>)".html_safe, portfolio_path(@portfolio) %>
+            <%= link_to "#{tag.name} (<i class='fa fa-times'></i>)".html_safe, portfolios_path %>
           <% else %>
-            <%= link_to tag.name, portfolio_path(@portfolio, tag: tag.name) %>
+            <%= link_to tag.name, portfolios_path(tag: tag.name) %>
           <% end %>
         <% end %>
       <% end %>
 
       <% if current_admin == @portfolio.admin %>
-        <%= link_to'&nbsp;<i class="fa fa-pencil-square"></i>'.html_safe, edit_portfolio_entry_path(@portfolio, @entry), class: 'edit-link' %>
-        <%= link_to'<i class="fa fa-times"></i>'.html_safe, portfolio_entry_path(@portfolio, @entry), method: :delete, data: { confirm: "Are you sure you want to delete '#{@entry.title}'?" }, class: 'delete-link' %>
+        <%= link_to'&nbsp;<i class="fa fa-pencil-square"></i>'.html_safe, edit_entry_path( @entry), class: 'edit-link' %>
+        <%= link_to'<i class="fa fa-times"></i>'.html_safe, entry_path(@entry), method: :delete, data: { confirm: "Are you sure you want to delete '#{@entry.title}'?" }, class: 'delete-link' %>
       <% end %>
       <p><%= @entry.summary.html_safe %></p>
       <p><%= @entry.content.html_safe %></p>

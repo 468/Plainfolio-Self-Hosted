@@ -4,22 +4,22 @@ Rails.application.routes.draw do
   get 'signup', to: 'admins#new', as: 'signup'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-
+  get 'rss', to: 'portfolios#rss', as: 'rss', :defaults => { :format => 'rss' }
+  get 'csv', to: 'portfolios#csv', as: 'csv', :defaults => { :format => 'csv' }
+  get 'pdf', to: 'portfolios#pdf', as: 'pdf'
+  get 'json', to: 'portfolios#json', as: 'json', :defaults => { :format => 'json' }
+  get 'protected' => 'portfolios#protected'
+  post 'password_submit' => 'portfolios#password_submit'
   resources :admins
   resources :sessions
   resources :tags
-  resources :portfolios, except: [:destroy, :edit], :path => '' do
-    get 'protected' => 'portfolios#protected'
-    post 'password_submit' => 'portfolios#password_submit'
-    resources :entries, except: [:new, :create, :index],  :path => '', param: :title do
-      post 'change_column' => 'entries#change_column'
-    end
-    resources :columns, only: [:update], :path => 'column' do
-      post 'toggle_show' => 'columns#toggle_show'
-      post 'change_position' => 'columns#change_position'
-      resources :entries, :path => 'entry', only: [:new, :create]
-    end
+  resources :columns, only: [:update], :path => 'column' do
+    post 'toggle_show' => 'columns#toggle_show'
+    post 'change_position' => 'columns#change_position'
+    resources :entries, :path => 'entry', only: [:new, :create]
   end
+  resources :portfolios, except: [:destroy, :edit, :show], :path => ''
+  resources :entries, param: :title
 
 
   # The priority is based upon order of creation: first created -> highest priority.

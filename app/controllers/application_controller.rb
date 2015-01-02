@@ -10,6 +10,15 @@ class ApplicationController < ActionController::Base
   end
   helper_method :get_portfolio
 
+  def get_columns
+    @first_column = @portfolio.columns.first
+    if @portfolio.admin == current_admin && !(params[:preview])
+      @columns = @portfolio.columns
+    else
+      @columns = @portfolio.columns.where(show: true)
+    end
+  end
+
   def current_admin
     @current_admin ||= Admin.find(session[:admin_id]) if (session[:admin_id] && admin_exists?)
   end

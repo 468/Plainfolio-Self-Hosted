@@ -5,7 +5,7 @@
 <main>
 <%= content_tag :div, class: 'big-form' do %>
 <h1 class='big-form-banner'>Manage Tags</h1>
-<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', current_admin.portfolio %></p>
+<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', portfolios_path %></p>
 
 <% if @tags %>
   <% @tags.each do |tag| %>

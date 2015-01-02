@@ -1,6 +1,6 @@
 <%= link_to 'Column Settings', 'javascript:void(0)', class: 'settings-slide btn', id: "column-#{column.id}-settings-btn" %>
 <%= content_tag :div, id: "column-#{column.id}-settings", class: 'column-settings' do %>
-  <%= form_for column, url: portfolio_column_path( portfolio, column) do |f| %>
+  <%= form_for column, url: column_path(column) do |f| %>
     <%= link_to 'Edit column colors', 'javascript:void(0)', class: 'btn dotted edit-column-colors' %>
     <%= content_tag :div, class: 'column-colors-form' do %>
       <p><%= f.label :background_color %>:</p>
@@ -16,9 +16,9 @@
       <p><%= f.submit 'Save' %></p>
     <% end %>
     <% if column.show == true && column != first_column %>
-      <%= link_to 'Hide this column?', portfolio_column_toggle_show_path(portfolio, column_id: column.id), remote: true, method: :post, class: 'btn dotted toggle-show' %>
+      <%= link_to 'Hide this column?', column_toggle_show_path(column_id: column.id), remote: true, method: :post, class: 'btn dotted toggle-show' %>
     <% elsif column.show == false && column != first_column %>
-      <%= link_to 'Show this column?', portfolio_column_toggle_show_path(portfolio, column_id: column.id), remote: true, method: :post, class: 'btn dotted toggle-show' %>
+      <%= link_to 'Show this column?', column_toggle_show_path(column_id: column.id), remote: true, method: :post, class: 'btn dotted toggle-show' %>
     <% end %>
   <% end %>
 <% end %>
