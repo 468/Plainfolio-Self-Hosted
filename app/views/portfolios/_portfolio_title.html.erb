@@ -1,0 +1,8 @@
+<header>
+  <h1 id='portfolio-title'>
+  	<%= best_in_place_if admin_signed_in?, portfolio, :title, :as => :input, :ok_button => 'Save', :cancel_button => 'Cancel', activator: '#title-edit-icon' %>
+  	<% if admin_signed_in? && !(params[:preview]) %>
+  		<%= fa_icon 'pencil-square', id: 'title-edit-icon' %>
+	<% end %>
+  </h1>
+</header>

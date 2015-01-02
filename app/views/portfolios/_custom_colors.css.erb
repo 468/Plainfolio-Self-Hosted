@@ -1,0 +1,28 @@
+/* Custom color selections */
+
+.portfolio{
+  font-size: <%= @portfolio.font_size %>px;
+}
+
+<% @columns.each_with_index do |column,index| %>
+  #column-<%= column.id %>{
+    background-color: <%= column.background_color %>;
+    color: <%= column.text_color %>;
+  }
+
+  #column-<%= column.id %> a{
+    color: <%= column.text_color %>;
+  }
+<% end %>
+
+<% @tags.each_with_index do |tag| %>
+  .tag-<%= tag.id %>{
+    background-color: <%= tag.background_color %>;
+    color: <%= tag.text_color %>;
+  }
+
+  .tag-<%= tag.id %> a{
+    color: <%= tag.text_color %> !important;
+  }
+<% end %>
+

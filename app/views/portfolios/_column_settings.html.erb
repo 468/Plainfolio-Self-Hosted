@@ -1,0 +1,24 @@
+<%= link_to 'Column Settings', 'javascript:void(0)', class: 'settings-slide btn', id: "column-#{column.id}-settings-btn" %>
+<%= content_tag :div, id: "column-#{column.id}-settings", class: 'column-settings' do %>
+  <%= form_for column, url: portfolio_column_path( portfolio, column) do |f| %>
+    <%= link_to 'Edit column colors', 'javascript:void(0)', class: 'btn dotted edit-column-colors' %>
+    <%= content_tag :div, class: 'column-colors-form' do %>
+      <p><%= f.label :background_color %>:</p>
+      <p><%= f.text_field :background_color, title: 'Set column background color' %></p>
+      <p><%= f.label :text_color %>:</p>
+      <p><%= f.text_field :text_color, title: 'Set column text color' %></p>
+      <p><%= f.submit 'Save' %></p>
+    <% end %>
+    <%= link_to 'Edit entries per page', 'javascript:void(0)', class: 'btn dotted edit-entries-per-page' %>
+    <%= content_tag :div, class: 'entries-per-page-form' do %>
+      <p><%= f.label :entries_per_page %>:</p>
+      <p><%= f.select :entries_per_page, options_for_select(1..100, column.entries_per_page) %></p>
+      <p><%= f.submit 'Save' %></p>
+    <% end %>
+    <% if column.show == true && column != first_column %>
+      <%= link_to 'Hide this column?', portfolio_column_toggle_show_path(portfolio, column_id: column.id), remote: true, method: :post, class: 'btn dotted toggle-show' %>
+    <% elsif column.show == false && column != first_column %>
+      <%= link_to 'Show this column?', portfolio_column_toggle_show_path(portfolio, column_id: column.id), remote: true, method: :post, class: 'btn dotted toggle-show' %>
+    <% end %>
+  <% end %>
+<% end %>

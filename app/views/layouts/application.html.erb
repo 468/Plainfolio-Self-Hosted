@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% if portfolio_exists? %>
+    <title><%= get_portfolio.title %></title>
+  <% else %>
+    <title>Plainfolio - A Simple Web Portfolio</title>
+  <% end %>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta charset="UTF-8">
+  <%= javascript_include_tag 'global' %>
+  <% if admin_signed_in? %>
+    <%= javascript_include_tag 'portfolio_admin_ui' %>
+    <%= javascript_include_tag 'jquery.cleditor.min.js' %>
+    <%= javascript_include_tag 'entries' %>
+  <% end %>
+</head>
+
+<% if admin_signed_in? %>
+  <body data-no-turbolink>
+<% else %>
+  <body>
+<% end %>
+
+<% flash.each do |name, msg| %>
+  <div id = <%= "flash_#{name}" %> >
+    <%= msg %>
+  <span id='flash-close'><%= link_to '<i class="fa fa-times"></i>'.html_safe, 'javascript:;' %></span>
+  </div>
+<% end %>
+
+
+<%= yield %>
+
+</body>
+</html>

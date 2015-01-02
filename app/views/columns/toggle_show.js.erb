@@ -1,0 +1,12 @@
+var $column = $('#column-' + <%= column.id %>)
+
+<% if showing %>
+  $column.fadeTo( "slow" , 1);
+  $column.children().fadeTo( "slow" , 1);
+  $('.toggle-show', $column).text('Hide this column')
+<% elsif !(showing) %>
+  $column.fadeTo( "slow" , 0.4);
+  $('.toggle-show', $column).text('Show this column')
+<% end %>
+
+

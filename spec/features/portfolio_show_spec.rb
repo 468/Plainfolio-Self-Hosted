@@ -1,0 +1,39 @@
+require "rails_helper"
+require 'spec_helper'
+require 'features/helpers'
+include Helpers
+
+feature "Portfolio show page" do
+  
+  let!(:admin) { FactoryGirl.create(:admin) }
+  let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
+
+  scenario "should retrieve correct portfolio" do
+  	visit portfolio_path(portfolio)
+  	expect(page).to have_text(portfolio.title)
+  end
+
+  scenario "should not show hidden columns" do
+  	portfolio.columns.second.update(show: false)
+  	portfolio.columns.third.update(show: false)
+  	visit portfolio_path(portfolio.id)
+  	expect(page).to have_css('.column', count: 2) # default showing column count is 4
+  end
+
+  feature "pagination" do
+
+    let!(:admin) { FactoryGirl.create(:admin) }
+    let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
+
+    scenario "should limit entries shown per column to column's entries_per_page count" do
+      sign_in(admin.email,admin.password)
+      5.times { create_entry(admin, portfolio, 'test', 'test', true, true) }
+      portfolio.columns.first.update(entries_per_page: 2)
+      visit portfolio_path(portfolio)
+      within first(".column") do
+      	expect(page).to have_css('.entry', count: 2)
+      end
+    end
+
+  end
+end

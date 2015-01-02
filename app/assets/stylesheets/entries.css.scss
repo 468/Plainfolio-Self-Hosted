@@ -1,0 +1,42 @@
+// Place all the styles related to the Entries controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#interior_content_form{
+	display:none;
+}
+
+#summary_field iframe, #interior_content_form iframe,#edit_content_field iframe{
+  height: 80% !important;
+  width: 100% !important;
+  bottom:0;
+}
+
+.cleditorToolbar{
+	height:20% !important;
+	background:none !important;
+	min-width: 400px;
+}
+
+.cleditorMain{
+	min-width:400px;
+	min-height:260px;
+}
+
+a.edit-link, a.delete-link{
+  text-decoration: none;
+  color: #111;
+}
+
+a.delete-link :hover, a.edit-link :hover{
+  color:snow;
+}
+
+textarea#permalink{
+	height: 12px;
+	font-size: 12px;
+}
+
+input.delete-link{
+	background-color:#FF7878;
+}

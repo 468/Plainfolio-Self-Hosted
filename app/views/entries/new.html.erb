@@ -1,0 +1,47 @@
+<style>
+  <%= render partial: 'custom_colors.css.erb' %>
+</style>
+<div id='top-bar'><%= link_to '<i class="fa fa-home"></i>'.html_safe, root_path %></div>
+<main>
+<%= content_tag :div, class: 'big-form' do %>
+<h1 class='big-form-banner'>New Entry</h1>
+<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', @portfolio %></p>
+
+<% @entry.errors.full_messages.each do |msg| %>
+  <p class='form-error-message'><%= msg %></p>
+<% end %>
+
+<%= form_for [@portfolio, @column, @entry] do |f| %>
+  <p class='big-form-text'><%= f.text_field :title, placeholder: 'Title' %></p> Link title to interior page? <%= f.check_box :title_link %>
+  <p>Link title to external URL? <%= f.check_box :external_title_link %></p>
+  <%= content_tag :div, id: "external-url-form", class: (@entry.external_title_link ? nil : 'hidden-form')  do %>
+    External URL: <%= f.text_field :external_url %>
+  <% end %>
+  <p><b><%= f.label :summary, 'Entry summary:' %></b></p>
+  <div id='summary_field'><%= f.text_area :summary %></div>
+  <p><%= submit_tag "Add interior page content", :type => 'button', id: 'add-interior-content' %></p>
+  <div id='interior_content_form'>
+    <p><b><%= f.label :content, 'Entry content:' %></b></p>
+    <p><%= "Optional content for interior page. This will be reachable via the permalink below. You may want to link to this in the summary above if you aren't doing so with the title." %></p>
+    <%= f.text_area :content %>
+  </div>
+  <p>
+    <% if @tags && @tags.length > 0 %>
+      <% @tags.each do |tag| %>
+        <div>
+          <%= check_box_tag "entry[tag_ids][]", tag.id, @entry.tags.include?(tag) %>
+          <%= content_tag :span, id: "tag-#{tag.id}", class: "tag" do %>
+            <%= tag.name %>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      No tags found! <%= link_to 'Click here', tags_path %> to create some.
+    <% end %>
+  </p>
+  <p>Permalink preview: <textarea rows="1" cols="55" id='permalink' readonly><%= "#{@portfolio.url}/#{@entry.slug}" %></textarea> </p>
+  <p>Pin entry to the top of column? <%= f.check_box :sticky %></p>
+  <p><%= f.submit %></p>
+<% end %>
+<% end %>
+</main>

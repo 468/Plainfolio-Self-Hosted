@@ -1,0 +1,49 @@
+$(document).ready(function(){
+// initialize wysiwyg editors for entry creation form
+
+$("#entry_summary").cleditor({
+	width: 700,
+    height: 260
+});
+$("#entry_content").cleditor({
+    width: 700,
+    height: 350
+});
+
+$('.cleditorMain').resizable();
+
+// entry creation ui
+$('#add-interior-content').click(function(){
+  $('#interior_content_form').slideToggle(); $(this).fadeOut();
+})
+
+$('#entry_title_link').change(function(){
+  if($(this).is(':checked')){
+    $('#interior_content_form').slideDown();
+    $('#entry_external_title_link').prop("checked", false);
+    $('#add-interior-content').fadeOut();
+    $('#external-url-form').slideUp();
+  } else {
+    $('#interior_content_form').slideUp();
+    $('#add-interior-content').fadeIn();
+  }
+});
+
+
+$('#entry_external_title_link').change(function(){
+  if($(this).is(':checked')){
+    $('#external-url-form').slideDown();
+    $('#entry_title_link').prop("checked", false);
+  } else {
+    $('#external-url-form').slideUp();
+  }
+});
+
+var slug = window.location.pathname.split('/')[1]
+$( "#entry_title" ).keyup(function() {
+  var title = $("#entry_title").val().replace(/[_\W]+/g, "-").toLowerCase();
+  $('#permalink').val('<%= Portfolio.first.url %>/' + title )
+});
+
+
+});

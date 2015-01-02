@@ -1,0 +1,48 @@
+<style>
+  <%= render partial: 'custom_colors.css.erb' %>
+</style>
+<div id='top-bar'><%= link_to '<i class="fa fa-home"></i>'.html_safe, root_path %></div>
+<main>
+<%= content_tag :div, class: 'big-form' do %>
+<h1 class='big-form-banner'>Manage Tags</h1>
+<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', current_admin.portfolio %></p>
+
+<% if @tags %>
+  <% @tags.each do |tag| %>
+    <div class = 'tag-edit-box'>
+    <%= content_tag :span, id: "tag-#{tag.id}", class: "tag" do %>
+      <%= tag.name %>
+    <% end %>
+    <br><br>
+    <%= form_for tag, :action => :update do |f| %>
+      <%= f.label :name %>:
+      <%= f.text_field :name %>
+      <%= f.label :background_color %>:
+      <%= f.text_field :background_color, title: "Tag background color" %>
+      <%= f.label :text_color %>:
+      <%= f.text_field :text_color, title: "Tag text color" %>
+      <%= f.submit :class => "small-submit" %>
+      <%= link_to "<button>Delete Tag</button>".html_safe, tag, method: :delete, data: { confirm: 'Are you sure you want to delete this tag?' } %>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
+
+<h1 class='big-form-banner'>Create Tag</h1>
+<% @tag.errors.full_messages.each do |msg| %>
+  <p class='form-error-message'><%= msg %></p>
+<% end %>
+<%= form_for @tag do |f| %>
+  <p>
+    <%= f.label :name %>:
+    <%= f.text_field :name %>
+    <%= f.label :background_color %>:
+    <%= f.text_field :background_color, title: "Tag background color" %>
+    <%= f.label :text_color %>:
+    <%= f.text_field :text_color, title: "Tag text color" %>
+  </p>
+  <%= f.submit %>
+<% end %>
+<br>
+<% end %>
+</main>

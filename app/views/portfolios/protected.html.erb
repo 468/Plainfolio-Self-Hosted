@@ -1,0 +1,13 @@
+<main>
+	<%= content_tag :div, class: "big-form" do %>
+<h1 class='big-form-banner'>Password Protected</h1>
+
+<p>Please enter the password below.</p>
+
+<%= form_for :portfolio_password, :url => portfolio_password_submit_path(params[:portfolio_id]) do |f| %>
+  <p class='big-form-text'><%= f.password_field :portfolio_password, placeholder: "Password" %></p>
+  <%= f.submit 'Submit' %>
+<% end %>
+<% end %>
+</main>
+<%= render "footer" %>

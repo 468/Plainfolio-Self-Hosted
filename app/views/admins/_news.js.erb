@@ -1,0 +1,17 @@
+<script>
+  $.getJSON( "http://www.plainfolio.com/plainfolio.json", function( data ) {
+    var items = [];
+    $.each( data.columns[1].entries, function( idx, obj ) {
+      if(idx>4){
+        return false;
+      }
+      else{
+        items.push( "<li class='news-title'>" + obj.entry_title + "</li> <span class='date'>" + obj.entry_created_at + "</span><li>" + obj.entry_summary + "</li>" );
+      }
+    });
+    $( "<ul/>", {
+      "class": "news-list",
+      html: items.join( "" )
+    }).appendTo($('#news') );
+  });
+</script>

@@ -1,0 +1,15 @@
+<main>
+  <%= render "load_animation" %>
+  <%= content_tag :div, class: "big-form" do %>
+    <h1 class='big-form-banner'>Create your portfolio</h1>
+    <% @portfolio.errors.full_messages.each do |msg| %>
+      <p class='form-error-message'><%= msg %></p>
+    <% end %>
+    <%= form_for @portfolio do |f| %>
+      <p class='big-form-text'><%= f.text_field :title, autofocus: true, placeholder: "Title (eg your name)" %></p>
+      <p class='big-form-text'><%= f.text_field :url, placeholder: 'URL installed on'  %></p>
+      <%= f.submit id: 'create-portfolio' %>
+    <% end %>
+    <p>*These can both be changed later</p>
+  <% end %>
+</main>

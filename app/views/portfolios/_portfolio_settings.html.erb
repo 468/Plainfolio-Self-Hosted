@@ -1,0 +1,45 @@
+<%= link_to 'Portfolio Settings', 'javascript:void(0)', class: 'btn', id: "portfolio-settings-btn" %>
+<%= content_tag :div, id: 'portfolio-settings' do %>
+  <%= form_for portfolio do |f| %>
+  <%= link_to 'Edit portfolio font', 'javascript:void(0)', class: 'btn dotted', id: 'edit-portfolio-font' %>
+  <%= content_tag :div, id: 'portfolio-font-form' do %>
+    <p><%= f.label :font %>:</p>
+    <p><%= f.select :font, options_for_select(([ ['Arial', 'arial', {class: 'arial'}], ['Helvetica', 'helvetica',  {class: 'helvetica'}], ['Franklin Gothic Medium', 'franklin-gothic-medium', {class: 'franklin-gothic-medium'}], ['Futura', 'futura', {class: 'futura'}], ['Times New Roman', 'times-new-roman', {class: 'times-new-roman'}], ['Garamond', 'garamond', {class: 'garamond'}],  ['Georgia', 'georgia', {class: 'georgia'}], ['Lucida Grande', 'lucida-grande', {class: 'lucida-grande'}], ['Gill Sans', 'gill-sans', {class: 'gill-sans'}], ['Rockwell', 'rockwell', {class: 'rockwell'}], ['Courier New', 'courier-new', {class: 'courier-new'}] ]), portfolio.font) %></p>
+    <p><%= f.label :font_size %></p>
+    <p><%= f.select :font_size, options_for_select(8..24, portfolio.font_size) %></p>
+      <p><%= f.submit 'Save' %></p>
+    <% end %>
+  <%# end %>
+
+  <%#= form_for portfolio do |f| %>
+    <%= link_to 'Password protection', 'javascript:void(0)', class: 'btn dotted', id: 'password-settings' %>
+    <%= content_tag :div, id: 'password-settings-form' do %>
+      <p><%= f.label :passworded, 'Password protect?' %> <%= f.check_box :passworded %></p>
+      <%= content_tag :div, id: 'portfolio-password-form' do %>
+        <p><%= f.label :password %></p>
+        <p><%= f.password_field :password %></p>
+      <% end %>
+      <p><%= f.submit 'Save' %></p>
+    <% end %>
+  <%# end %>
+
+  <%#= form_for portfolio do |f| %>
+    <%= link_to 'Output (RSS/PDF/JSON/CSV)', 'javascript:void(0)', class: 'btn dotted', id: 'output-settings' %>
+    <%= content_tag :div, id: 'output-settings-form' do %>
+      <p><%= f.label :pdf_enabled, 'PDF Download enabled?' %> <%= f.check_box :pdf_enabled %></p>
+      <p><%= f.label :rss_enabled, 'RSS Feed enabled?' %> <%= f.check_box :rss_enabled %></p>
+      <p><%= link_to 'View JSON', portfolio_url(@portfolio) + ".json" %></p>
+      <p><i class='fa fa-save'></i> <%= link_to "Export as .csv file", portfolio_path(portfolio) + '.csv' %></p>
+      <p><%= f.submit 'Save' %></p>
+    <% end %>
+  <%# end %>
+  <%= link_to 'Change URL', 'javascript:void(0)', class: 'btn dotted', id: 'url-settings' %>
+    <%= content_tag :div, id: 'url-settings-form' do %>
+      <p><%= f.label :url, 'Change URL:' %></p>
+      <p><%= f.text_field :url %></p>
+      <p><%= f.submit 'Save' %></p>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Preview', portfolio_path(@portfolio, :preview => "true"), class: 'btn', id: 'portfolio-preview-btn', target: '_blank' %>

@@ -1,0 +1,36 @@
+<% entries.each do |entry| %>
+  <%= content_tag :div, class: admin_signed_in?  ? "entry grabbable" : "entry", id: "entry-#{entry.slug}" do %>
+  <h3 class='entry-title'>
+    <% if entry.sticky == true %> 
+      <%= fa_icon "asterisk" %> 
+    <% end %>
+    <% if entry.title_link == true %>
+      <%= link_to entry.title, portfolio_entry_path(@portfolio, entry) %>
+    <% elsif entry.external_title_link == true %>
+      <%= link_to entry.title, entry.external_url, :target => '_blank' %>
+    <% else %>
+      <%= entry.title %>
+    <% end %>
+  </h3>
+  <% entry.tags.each do |tag| %>
+    <%= content_tag :span, class: "tag tag-#{tag.id}" do %>
+      <% if params[:tag] && params[:tag] == tag.name %>
+        <%= link_to "#{tag.name} (<i class='fa fa-times'></i>)".html_safe, portfolio_path(@portfolio) %>
+      <% elsif params[:preview] %>
+        <%= link_to tag.name, portfolio_path(@portfolio, preview: true, tag: tag.name) %>
+      <% else %>
+        <%= link_to tag.name, portfolio_path(@portfolio, tag: tag.name) %>
+      <% end %>
+    <% end %>
+  <% end %>
+  <% if admin_signed_in? && !(params[:preview]) %>
+    <div class ='entry-admin-links'>
+    <%= link_to'&nbsp;<i class="fa fa-pencil-square"></i>'.html_safe, edit_portfolio_entry_path(@portfolio, entry), class: 'edit-link' %>
+    <%= link_to'<i class="fa fa-times"></i>'.html_safe, portfolio_entry_path(@portfolio, entry), method: :delete, data: { confirm: "Are you sure you want to delete '#{entry.title}'?" }, class: 'delete-link' %>
+    </div>
+  <% end %>
+  <p>
+    <%= entry.summary.html_safe %>
+  </p>
+<% end %>
+<% end %>

@@ -1,0 +1,32 @@
+<%= javascript_include_tag 'canvasbg' %><canvas id="canvasbg" ></canvas>
+<main>
+  <%= content_tag :div, class: 'big-form' do %>
+    <h1 class='big-form-banner white'>Plainfolio</h1><br>
+    <h1 class='big-form-banner'>Your Account</h1>
+    <% if current_admin.portfolio.present? %>
+      <p class='big-text'><%= link_to 'Visit Your Portfolio', portfolio_path(current_admin.portfolio), id: 'user-portfolio-link' %></p>
+    <% else %>
+      <p class='big-text'><%= link_to 'Create Your Portfolio', new_portfolio_path, id: 'new-portfolio-link' %></p>
+    <% end %>
+    <p class='big-text'><%= link_to 'Admin Settings', edit_admin_path(@admin),  id: 'admin-settings-link' %></p>
+    <p class='big-text'><%= link_to 'Sign Out',  logout_path, id: 'sign-out-link' %></p>
+  <% end %>
+  <br>
+  <%= content_tag :div, class: 'big-form' do %>
+    <h1 class='big-form-banner'>Stats</h1>
+    <% if current_admin.portfolio.present? %>
+      <p>Views today: <%= "#{current_admin.portfolio.impressionist_count(:start_date=>Date.today)} (#{(current_admin.portfolio.impressionist_count(:start_date=>Date.today, :filter=>:ip_address))} unique)" %></p>
+      <p>Views total: <%= "#{current_admin.portfolio.impressionist_count} (#{(current_admin.portfolio.impressionist_count(:filter=>:ip_address))} unique)"  %></p>
+    <% else %>
+      <p>~ Nothing here yet ~</p>
+    <% end %>
+  <% end %>
+  <br>
+  <%= content_tag :div, class: 'big-form' do %>
+    <h1 class='big-form-banner'>News</h1>
+    <div id='news'>
+      <%= render "news.js" %>
+    </div>
+    <%= link_to 'View all', 'http://www.plainfolio.com/plainfolio' %>
+  <% end %>
+</main>

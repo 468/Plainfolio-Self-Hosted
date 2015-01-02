@@ -1,0 +1,251 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+@media screen and (max-width: 1360px) {
+    .left {
+    margin-top: 0 !important;
+    	#about{
+    		& h1{
+    			font-size:3.5em;
+    		}
+    	}
+    	   		.feature-tag{
+    		font-size:0.8em;
+    		padding: 2px 4px;
+    		}
+
+ 	 }
+
+ 	 .right{
+ 	 	
+ 	 	#screenshots::before{
+ 	 	  content:none !important; 
+		}
+
+		#screenshots::after{
+		  content:none !important; 
+		}
+ 	 }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .left {
+    	width: 100% !important;
+    	float:none !important;
+    	text-align:left !important;
+
+    	#about{
+    		width:100% !important;
+    	}
+ 	 }
+
+ 	 .right{
+ 	 	width:100% !important;
+ 	 	float:none !important;
+
+ 	 	#screenshots::before{
+ 	 	  content:none !important; 
+		}
+
+		#screenshots::after{
+		  content:none !important; 
+		}
+ 	 }
+}
+
+.home-header{
+}
+
+.home-header a{
+	color:snow;
+	text-decoration:none;
+}
+
+
+ul#feature-list{
+	font-family:Georgia, serif;
+	font-size:0.9em;
+	margin:0;
+}
+
+.feature-tag{
+	display: inline-block;
+	margin: 3px 0;
+	font-weight:bold;
+	padding: 3px 6px;
+	line-height: 20px;
+	color:snow;
+	font-size:0.9em;
+	&.red{
+	  background-color:#F7977A;
+
+	}
+	&.orange{
+	  background-color:#FF7878;
+
+	}
+	&.blue{
+	  background-color:#6ECFF6;
+
+	}
+	&.green{
+	  background-color:#A2D39C;
+
+	}
+	&.magenta{
+	  background-color:#F49AC2;
+
+	}
+}
+
+main.home-content {
+
+    margin:6% 10%;
+	height:auto;
+	float:left;
+
+	p.bold{
+		font-weight:bold;
+	}
+
+	p.bold a{
+		color:#111;
+	}
+
+	.left{
+		width:40%;
+		float:left;
+		text-align:right;
+		margin-top:3.5%;
+
+		& #about{
+			width:90%;
+			height:100%;
+
+			& #features{
+				border: 1px dashed #FF7878;
+				padding:10px;
+				opacity:0.9;
+				background-color:#fff;
+			}
+
+			& p{
+			font-family:Georgia;
+			font-size:1em;
+			}
+			& p.bar{
+				display: block;
+
+				& a{
+				//color:snow;
+				}
+			}
+			& p.small{
+				font-family:georgia;
+				font-size:0.8em;
+			}
+
+		}
+		& h1{
+	  		font-size:5em;
+	  		font-family: 'clearface_fsbold';
+	  		//background-color: #111;
+	  		display: block;
+	  		//padding: 15px;
+	  		//color: snow;
+		}
+		& h2{
+	  		font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+		}
+	}
+
+	.right{
+		margin-top:1.5%;
+		width:60%;
+		float:right;
+		position:relative;
+
+		#screenshots{
+
+			z-index:1;
+			width:100%;
+
+			.screenshot{
+				width:100%;
+				border: 8px solid #111;
+			}
+		}
+
+		#screenshots::before{
+			content:"";
+			border:8px solid #111;
+			z-index:-1;
+			position:absolute;
+			top:-25px;
+			left:25px;
+			width:100%;
+			height:99%;
+			background-color:#FF7878;
+		}
+
+		#screenshots::after{
+			content:"";
+			border:8px solid #111;
+			z-index:-2;
+			position:absolute;
+			top:-50px;
+			left:50px;
+			background-color:#FFCA9E;
+			width:100%;
+			height:99%;
+		}
+	}
+
+	a#sign-up,a#sign-in,a#back{
+		display:inline-block;
+		font-size:18px;
+		font-family: Helvetica Neue,Helvetica,Arial,sans-serif; 
+		font-weight:bold;
+		padding:10px;
+		margin: 10px 0;
+		border:10px solid #111;
+		display:inline-block;
+		text-decoration:none;
+		color:#111;
+	}
+	#sign-up:hover,#sign-in:hover,#back:hover{
+		background-color:#111;
+		color:snow;
+		cursor:pointer;
+	}
+}
+
+#news{
+	.news-title{
+		font-weight:bold;
+		font-size:1.1em;
+		padding:5px;
+		background-color:#FF7878;
+		display:inline;
+	}
+
+	& .date{
+		font-weight:normal;
+		font-style:italic;
+		font-size:0.6em;
+	}
+
+	& ul{
+		padding: 0;
+    	list-style-type: none;
+    	-webkit-padding-start: 0;
+
+    	& li{
+    		margin: 12px 0;
+    		font-size:0.9em;
+    	}
+	}
+}

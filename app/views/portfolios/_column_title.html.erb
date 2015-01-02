@@ -1,0 +1,16 @@
+<h2 class='column-title'>
+  <%= best_in_place_if admin_signed_in? && !(params[:preview]), column, :name, :as => :input, url: portfolio_column_path(portfolio, column), :ok_button => 'Save', :cancel_button => 'Cancel', activator: "#column-#{column.id}-edit-icon" %>
+  <% if admin_signed_in? && !(params[:preview]) %>
+  	<%= fa_icon 'pencil-square', id: "column-#{column.id}-edit-icon" %>
+  	<% if index == 0 %>
+  	<% elsif index == 1 %>
+  	  <%= link_to'<i class="fa fa-arrow-circle-right"></i>'.html_safe, portfolio_column_change_position_path(portfolio, column_id: column.id, new_position: index + 1 ), method: :post %>
+  	<% elsif index == 4 %>
+  	  <%= link_to'<i class="fa fa-arrow-circle-left"></i>'.html_safe, portfolio_column_change_position_path(portfolio, column_id: column.id, new_position: index - 1 ), method: :post %>
+  	<% else %>
+  	  <%= link_to'<i class="fa fa-arrow-circle-left"></i>'.html_safe, portfolio_column_change_position_path(portfolio, column_id: column.id, new_position: index - 1 ), method: :post %>
+  	  <%= link_to'<i class="fa fa-arrow-circle-right"></i>'.html_safe, portfolio_column_change_position_path(portfolio, column_id: column.id, new_position: index + 1 ), method: :post %>
+  	<% end %>
+  <% end %>
+</h2>
+
