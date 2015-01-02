@@ -91,8 +91,10 @@ $('.column').droppable({
   drop: function(event, ui) {
     var entry_title = ui.draggable.attr("id").split(/-(.+)?/)[1];
     var column_id = $(this).attr('id').split('-')[1];
+    console.log(entry_title)
+    console.log(column_id)
     $.ajax({
-      url: window.location.pathname + '/' + entry_title + '/change_column',
+      url: document.URL + '/entries/' + entry_title + '/change_column',
       type: 'POST',
       data: { entry: { column: parseInt(column_id) } },
       success: function (response) {

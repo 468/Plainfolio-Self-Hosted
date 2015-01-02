@@ -10,16 +10,18 @@ Rails.application.routes.draw do
   get 'json', to: 'portfolios#json', as: 'json', :defaults => { :format => 'json' }
   get 'protected' => 'portfolios#protected'
   post 'password_submit' => 'portfolios#password_submit'
-  resources :admins
-  resources :sessions
-  resources :tags
+  resources :admins, except: [:show, :destroy]
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :tags, except: [:show, :edit, :new]
   resources :columns, only: [:update], :path => 'column' do
     post 'toggle_show' => 'columns#toggle_show'
     post 'change_position' => 'columns#change_position'
     resources :entries, :path => 'entry', only: [:new, :create]
   end
   resources :portfolios, except: [:destroy, :edit, :show], :path => ''
-  resources :entries, param: :title
+  resources :entries, except: [:new, :create, :index], param: :title do
+    post 'change_column' => 'entries#change_column'
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
