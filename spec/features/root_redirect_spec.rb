@@ -16,7 +16,8 @@ feature "Homepage visit" do
     end
 
     scenario "should redirect to  account page if signed in without portfolio" do
-  	  sign_in(admin2.email,admin.password)
+      admin.portfolio.destroy
+  	  sign_in(admin.email,admin.password)
       visit root_path
       expect(page).to have_text("Create Your Portfolio")
     end

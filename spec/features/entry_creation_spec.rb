@@ -30,7 +30,7 @@ feature "Entry creation" do
     click_button('Create Entry')
     expect(page).to have_text("test title 3")
     entry = portfolio.entries.first
-    expect(page).to have_link('test title 3', href: portfolio_entry_path(portfolio, entry))
+    expect(page).to have_link('test title 3', href: entry_path(entry))
   end
 
   scenario "should have title link to exterior page if option is checked" do

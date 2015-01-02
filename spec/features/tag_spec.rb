@@ -18,7 +18,7 @@ feature 'Tag' do
 
   scenario 'should filter entries when clicked (minus first column)' do
   	setup
-  	visit portfolio_path(portfolio)
+  	visit portfolios_path
   	click_link('test_tag')
   	expect(page).to have_text("tagged entry")
   	expect(page).to_not have_text("untagged entry")
@@ -26,7 +26,7 @@ feature 'Tag' do
 
   scenario 'should unfilter posts when clicked while selected (deactivated)' do
   	setup
-  	visit portfolio_path(portfolio)
+  	visit portfolios_path
   	click_link('test_tag')
   	expect(page).to_not have_text("untagged entry")
   	click_link('test_tag')
@@ -36,7 +36,7 @@ feature 'Tag' do
 
   scenario 'should be shown on entry page' do
   	setup
-  	visit portfolio_entry_path(portfolio, tagged_entry)
+  	visit entry_path(tagged_entry)
   	expect(page).to have_text("test_tag")
   end
 

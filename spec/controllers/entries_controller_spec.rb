@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe EntriesController, :type => :controller do
 
   let!(:admin) { FactoryGirl.create(:admin) }
-
   let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
   let!(:column) { portfolio.columns.second }
   let!(:entry) { FactoryGirl.create(:entry, column: column) }

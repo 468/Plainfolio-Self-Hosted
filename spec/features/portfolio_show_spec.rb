@@ -9,14 +9,14 @@ feature "Portfolio show page" do
   let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
   scenario "should retrieve correct portfolio" do
-  	visit portfolio_path(portfolio)
+  	visit portfolios_path
   	expect(page).to have_text(portfolio.title)
   end
 
   scenario "should not show hidden columns" do
   	portfolio.columns.second.update(show: false)
   	portfolio.columns.third.update(show: false)
-  	visit portfolio_path(portfolio.id)
+  	visit portfolios_path
   	expect(page).to have_css('.column', count: 2) # default showing column count is 4
   end
 
@@ -29,7 +29,7 @@ feature "Portfolio show page" do
       sign_in(admin.email,admin.password)
       5.times { create_entry(admin, portfolio, 'test', 'test', true, true) }
       portfolio.columns.first.update(entries_per_page: 2)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within first(".column") do
       	expect(page).to have_css('.entry', count: 2)
       end

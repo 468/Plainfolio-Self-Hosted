@@ -9,12 +9,12 @@ feature "Best in place" do
 
   scenario "should show when portfolio owner signed in" do
   	sign_in(admin.email,admin.password)
-    visit portfolio_path(portfolio)
+    visit portfolios_path
     expect(page.has_css?('.fa-pencil-square')).to be true
   end
   
   scenario "should not show when admin not signed in" do
-    visit portfolio_path(portfolio)
+    visit portfolios_path
     expect(page.has_css?('.fa-pencil-square')).to be false
   end
 end

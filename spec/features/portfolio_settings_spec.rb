@@ -10,18 +10,18 @@ feature "Portfolio settings" do
 
   scenario "menu should show when portfolio owner signed in" do
   	sign_in(admin.email,admin.password)
-    visit portfolio_path(portfolio)
+    visit portfolios_path
     expect(page).to have_text("Portfolio Settings")
   end
 
   scenario "menu should not show when admin not signed in" do
-  	visit portfolio_path(portfolio)
+  	visit portfolios_path
     expect(page).to_not have_text("Portfolio Settings")
   end
 
   scenario "Edit portfolio font" do
   	sign_in(admin.email,admin.password)
-    visit portfolio_path(portfolio)
+    visit portfolios_path
     within('#portfolio-font-form') do
  	    select 'Garamond', from: "portfolio[font]"
       select 16, from: "portfolio[font_size]"
@@ -38,7 +38,7 @@ feature "Portfolio settings" do
 
     scenario "should let admin change pdf to disabled" do
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within('#output-settings-form') do
         page.uncheck('portfolio[pdf_enabled]')
         click_button('Save')
@@ -49,7 +49,7 @@ feature "Portfolio settings" do
     scenario "should let admin change pdf to enabled" do
       portfolio.update(pdf_enabled: false)
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       expect(page).to_not have_content("#pdf-button")
       within('#output-settings-form') do
         page.check('portfolio[pdf_enabled]')
@@ -60,24 +60,24 @@ feature "Portfolio settings" do
 
     scenario "should let admin change rss to enabled" do
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within('#output-settings-form') do
         page.check('portfolio[rss_enabled]')
         click_button('Save')
       end
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       expect(page).to have_css("#rss-button")
     end
 
     scenario "should let admin change rss to disabled" do
       portfolio.update(rss_enabled: true)
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within('#output-settings-form') do
         page.uncheck('portfolio[rss_enabled]')
         click_button('Save')
       end
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       expect(page).to_not have_css("#rss-button")
     end
 
@@ -86,13 +86,11 @@ feature "Portfolio settings" do
   feature "Password protection" do
 
   	let!(:admin) { FactoryGirl.create(:admin) }
-  	let!(:admin2) { FactoryGirl.create(:admin) }
   	let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
-  	let!(:protected_portfolio) { FactoryGirl.create(:portfolio, admin: admin2, passworded: true, password:'hello') }
 
     scenario "should accept valid password" do
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within('#password-settings-form') do
       	page.check('portfolio[passworded]')
  	  	  fill_in('portfolio[password]', :with => 'test')
@@ -104,7 +102,7 @@ feature "Portfolio settings" do
 
     scenario "should reject invalid password" do
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within('#password-settings-form') do
         page.check('portfolio[passworded]')
         fill_in('portfolio[password]', :with => '')
@@ -116,8 +114,9 @@ feature "Portfolio settings" do
     end
 
    	scenario "should wipe password upon disable" do
-      sign_in(admin2.email,admin2.password)
-      visit portfolio_path(protected_portfolio)
+      portfolio.update(passworded: true, password:'hello')
+      sign_in(admin.email,admin.password)
+      visit portfolios_path
       within('#password-settings-form') do
         page.uncheck('portfolio[passworded]')
         click_button('Save')
@@ -134,7 +133,7 @@ feature "Portfolio settings" do
 
     scenario "should change url" do
       sign_in(admin.email,admin.password)
-      visit portfolio_path(portfolio)
+      visit portfolios_path
       within('#url-settings-form') do
         fill_in('portfolio[url]', :with => 'mynewurl.com')
         click_button('Save')

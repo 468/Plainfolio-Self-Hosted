@@ -16,7 +16,7 @@ module Helpers
 
   def create_entry(admin, portfolio, title='test title',summary='test summary',submit=true, signed_in=false)
     sign_in(admin.email,admin.password) unless signed_in == true
-    visit portfolio_path(portfolio)
+    visit portfolios_path
     within first(".column") do
       click_link('Add New Entry')
     end

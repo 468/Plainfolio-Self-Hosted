@@ -114,7 +114,7 @@ class PortfoliosController < ApplicationController
         format.json { respond_with_bip(@portfolio) }
       else
         format.html do
-          redirect_to @portfolio
+          redirect_to portfolios_path
           flash[:error] = @portfolio.errors.empty? ? "Error updating portfolio" : @portfolio.errors.full_messages.to_sentence
         end
         format.json { respond_with_bip(@portfolio) }
