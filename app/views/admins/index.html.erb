@@ -10,6 +10,11 @@
     <% end %>
     <p class='big-text'><%= link_to 'Admin Settings', edit_admin_path(@admin),  id: 'admin-settings-link' %></p>
     <p class='big-text'><%= link_to 'Sign Out',  logout_path, id: 'sign-out-link' %></p>
+    <% if portfolio_exists? %>
+      <p>---</p>
+      <p class='big-text'><%= button_to 'Delete Portfolio', portfolio_path(current_admin.portfolio), method: :delete, data: { confirm: "Are you sure you want to delete your portfolio?" }, class: 'delete-link' %></p>
+    <% end %>
+
   <% end %>
   <br>
   <%= content_tag :div, class: 'big-form' do %>

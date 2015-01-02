@@ -122,6 +122,16 @@ class PortfoliosController < ApplicationController
     end
   end
 
+  def destroy
+    if @portfolio.destroy
+      redirect_to admins_path
+      flash[:notice] = 'Portfolio deleted'
+    else
+      redirect_to admins_path
+      flash[:error] = 'Error deleting portfolio'
+    end
+  end
+
   private
 
     def check_admin_portfolio_exist

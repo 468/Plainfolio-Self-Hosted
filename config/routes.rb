@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     post 'change_position' => 'columns#change_position'
     resources :entries, :path => 'entry', only: [:new, :create]
   end
-  resources :portfolios, except: [:destroy, :edit, :show], :path => ''
+  resources :portfolios, except: [:edit, :show], :path => ''
   resources :entries, except: [:new, :create, :index], param: :title do
     post 'change_column' => 'entries#change_column'
   end
