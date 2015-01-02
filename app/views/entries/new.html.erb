@@ -5,7 +5,7 @@
 <main>
 <%= content_tag :div, class: 'big-form' do %>
 <h1 class='big-form-banner'>New Entry</h1>
-<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', @portfolio %></p>
+<p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', portfolios_path %></p>
 
 <% @entry.errors.full_messages.each do |msg| %>
   <p class='form-error-message'><%= msg %></p>

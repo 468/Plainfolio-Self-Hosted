@@ -177,7 +177,7 @@ a.delete-link :hover, a.edit-link :hover{
     left:10px;
 }
 
-#pdf-button, #rss-button{
+#pdf-button, #rss-button, #admin-button, #signout-button{
   display: inline-block;
   color: #111;
   background-color:snow;
@@ -188,7 +188,7 @@ a.delete-link :hover, a.edit-link :hover{
 }
 
 
-#pdf-button a, #rss-button a{
+#pdf-button a, #rss-button a, #admin-button a, #signout-button a{
   color:#111;
   text-decoration:none; 
 }

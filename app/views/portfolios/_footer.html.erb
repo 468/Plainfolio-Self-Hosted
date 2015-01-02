@@ -6,4 +6,9 @@
   <% if @portfolio.rss_enabled? %>
     <div id='rss-button'><%= link_to "<i class='fa fa-rss'></i> .rss".html_safe, rss_path %></div>
   <% end %>
+
+  <% if admin_signed_in? %>
+    <div id='admin-button'><%= link_to "Admin", admins_path %></div>
+    <div id='signout-button'><%= link_to "Sign Out", logout_path %></div>
+  <% end %>
 <% end %>

@@ -34,7 +34,7 @@
       </div>
     <% end %>
   </p>
-  <p>Permalink: <textarea rows="1" cols="55" id='permalink' readonly><%= "#{@portfolio.url}/#{@entry.slug}" %></textarea> </p>
+  <p>Permalink: <textarea rows="1" cols="55" id='edit-permalink' readonly><%= "#{@portfolio.url}/#{@entry.slug}" %></textarea> </p>
   <p>Pin entry to the top of column? <%= f.check_box :sticky %></p>
   <p><%= f.submit %></p>
 <% end %>

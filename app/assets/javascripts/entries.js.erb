@@ -40,6 +40,7 @@ $('#entry_external_title_link').change(function(){
 });
 
 var slug = window.location.pathname.split('/')[1]
+
 $( "#entry_title" ).keyup(function() {
   var title = $("#entry_title").val().replace(/[_\W]+/g, "-").toLowerCase();
   $('#permalink').val('<%= Portfolio.first.url %>/' + title )

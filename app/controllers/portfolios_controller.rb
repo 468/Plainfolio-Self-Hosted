@@ -44,7 +44,7 @@ class PortfoliosController < ApplicationController
   def csv
     respond_to do |format|
       format.csv do
-        if current_admin == @portfolio.admin
+        if admin_signed_in?
           send_data @portfolio.as_csv, filename: "#{@portfolio.title}.csv"
         else
           redirect_to portfolios_path
