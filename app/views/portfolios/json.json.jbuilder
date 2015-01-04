@@ -1,6 +1,6 @@
 json.title @portfolio.title
 
-json.columns @portfolio.columns.includes(:entries) do |column|
+json.columns @portfolio.columns.positioned.includes(:entries) do |column|
   next if column.show == false
   json.column_name column.name
   json.entries column.entries.each do |entry|

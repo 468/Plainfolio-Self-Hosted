@@ -11,7 +11,7 @@ class Column < ActiveRecord::Base
   validates_format_of :background_color, :with => /\A#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})\Z/i
   validates_format_of :text_color, :with => /\A#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})\Z/i
 
-  default_scope -> { order(position: :asc) }
+  scope :positioned, -> { order(position: :asc) }
   scope :showing, ->(show) { where(show: true)}
 
   def get_entries(tag=false)

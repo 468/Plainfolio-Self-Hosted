@@ -14,8 +14,8 @@ feature "Portfolio show page" do
   end
 
   scenario "should not show hidden columns" do
-  	portfolio.columns.second.update(show: false)
-  	portfolio.columns.third.update(show: false)
+  	portfolio.columns.positioned.second.update(show: false)
+  	portfolio.columns.positioned.third.update(show: false)
   	visit portfolios_path
   	expect(page).to have_css('.column', count: 2) # default showing column count is 4
   end
@@ -28,7 +28,7 @@ feature "Portfolio show page" do
     scenario "should limit entries shown per column to column's entries_per_page count" do
       sign_in(admin.username,admin.password)
       5.times { create_entry(admin, portfolio, 'test', 'test', true, true) }
-      portfolio.columns.first.update(entries_per_page: 2)
+      portfolio.columns.positioned.first.update(entries_per_page: 2)
       visit portfolios_path
       within first(".column") do
       	expect(page).to have_css('.entry', count: 2)

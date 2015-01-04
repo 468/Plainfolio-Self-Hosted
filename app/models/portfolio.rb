@@ -56,7 +56,7 @@ class Portfolio < ActiveRecord::Base
   def as_csv
     CSV.generate do |csv|
       csv << [self.title]
-      self.columns.each do |column|
+      self.columns.positioned.each do |column|
         column.entries.each do |entry|
           csv << [entry.column.name, entry.title, entry.summary, entry.content]
         end

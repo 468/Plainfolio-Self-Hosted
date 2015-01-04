@@ -4,7 +4,7 @@ RSpec.describe ColumnsController, :type => :controller do
 
   let!(:admin) { FactoryGirl.create(:admin) }
   let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
-  let!(:column) { portfolio.columns.second }
+  let!(:column) { portfolio.columns.positioned.second }
 
   describe "update" do
     context "from signed in admin" do

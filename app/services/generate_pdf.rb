@@ -16,7 +16,7 @@ class GeneratePDF
     pdf.text portfolio.title, size: 40, style: :bold
     pdf.text "(view online at #{portfolio.url})", size: 10, inline_format: true
     pdf.move_down 15
-    portfolio.columns.where(show: true).each do |column|
+    portfolio.columns.positioned.where(show: true).each do |column|
       pdf.text "#{column.name}:", size: 20, style: :bold
       pdf.move_down 15
       column.entries.each do |entry|

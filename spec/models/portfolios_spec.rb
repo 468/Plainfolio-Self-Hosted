@@ -41,7 +41,7 @@ RSpec.describe Portfolio, :type => :model do
 
   	it "should automatically create default columns upon creation" do
   	  expect(a.columns.count).to eq(5)
-  	  expect(a.columns.first.name).to eq("About")
+  	  expect(a.columns.positioned.first.name).to eq("About")
   	  a.columns.each_with_index do |column, index|
   		  expect(column.show).to be(true) unless index == 4
   		  expect(column.entries_per_page).to be(10) 
@@ -55,9 +55,9 @@ RSpec.describe Portfolio, :type => :model do
     end
 
     it "should automatically create default column entries upon creation" do
-      expect(a.columns.first.entries.count).to eq(2)
-      expect(a.columns.second.entries.count).to eq(2)
-      expect(a.columns.second.entries.first.tags.count).to eq(1)
+      expect(a.columns.positioned.first.entries.count).to eq(2)
+      expect(a.columns.positioned.second.entries.count).to eq(2)
+      expect(a.columns.positioned.second.entries.positioned.first.tags.count).to eq(1)
     end
   end
 

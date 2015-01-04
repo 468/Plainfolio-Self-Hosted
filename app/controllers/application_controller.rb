@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
   helper_method :get_portfolio
 
   def get_columns
-    @first_column = @portfolio.columns.first
+    @first_column = @portfolio.columns.positioned.first
     if @portfolio.admin == current_admin && !(params[:preview])
-      @columns = @portfolio.columns
+      @columns = @portfolio.columns.positioned
     else
-      @columns = @portfolio.columns.where(show: true)
+      @columns = @portfolio.columns.positioned.where(show: true)
     end
   end
 

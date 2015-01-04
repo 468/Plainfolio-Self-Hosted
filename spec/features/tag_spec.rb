@@ -8,8 +8,8 @@ feature 'Tag' do
 
   let!(:admin) { FactoryGirl.create(:admin) }
   let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
-  let!(:entry) {FactoryGirl.create(:entry, column: portfolio.columns.second, title: 'untagged entry')}
-  let!(:tagged_entry) {FactoryGirl.create(:entry, column: portfolio.columns.second, title: 'tagged entry')}
+  let!(:entry) {FactoryGirl.create(:entry, column: portfolio.columns.positioned.second, title: 'untagged entry')}
+  let!(:tagged_entry) {FactoryGirl.create(:entry, column: portfolio.columns.positioned.second, title: 'tagged entry')}
   let!(:tag) {FactoryGirl.create(:tag, portfolio: portfolio, name: 'test_tag')}
 
   def setup
