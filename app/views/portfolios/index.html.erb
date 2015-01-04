@@ -1,5 +1,5 @@
 <style scoped>
-  <%= render partial: 'custom_colors.css.erb' %>
+  <%= render "custom_colors.css", fontsize: @portfolio.font_size, columns: @columns, tags: @tags %>
 </style>
 <%= render "load_animation" %>
 <%= content_tag :main, class: "portfolio #{@portfolio.font}" do %>

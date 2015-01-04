@@ -1,5 +1,5 @@
-<% if @tags %>
-  <% @tags.each_with_index do |tag,index| %>
+<% if tags %>
+  <% tags.each_with_index do |tag,index| %>
     #tag-<%= tag.id %>{
       background-color: <%= tag.background_color %>;
       color: <%= tag.text_color %>;

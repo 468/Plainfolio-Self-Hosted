@@ -1,5 +1,5 @@
 <style>
-  <%= render partial: 'custom_colors.css.erb' %>
+  <%= render "custom_colors.css", tags: @tags, first_column: @first_column, fontsize: @portfolio.font_size %>
 </style>
 
 <%= content_tag :main, class: "portfolio #{@portfolio.font}" do %>

@@ -1,5 +1,5 @@
-<% if @tags %>
-<% @tags.each_with_index do |tag,index| %>
+<% if tags %>
+<% tags.each_with_index do |tag,index| %>
   #tag-<%= tag.id %>{
     background-color: <%= tag.background_color %>;
     color: <%= tag.text_color %>;
@@ -11,17 +11,17 @@
 <% end %>
 <% end %>
 
-<% if @first_column %>
-  #column-<%= @first_column.id %>{
-  	background-color: <%= @first_column.background_color %>;
-    color: <%= @first_column.text_color %>;
+<% if first_column %>
+  #column-<%= first_column.id %>{
+  	background-color: <%= first_column.background_color %>;
+    color: <%= first_column.text_color %>;
   }
 
-  #column-<%= @first_column.id %> a{
-  	color: <%= @first_column.text_color %>;
+  #column-<%= first_column.id %> a{
+  	color: <%= first_column.text_color %>;
   }
 <% end %>
 
 .portfolio{
-  font-size: <%= @portfolio.font_size %>px;
+  font-size: <%= fontsize %>px;
 }

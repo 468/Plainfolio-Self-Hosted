@@ -1,10 +1,10 @@
 /* Custom color selections */
 
 .portfolio{
-  font-size: <%= @portfolio.font_size %>px;
+  font-size: <%= fontsize %>px;
 }
 
-<% @columns.each_with_index do |column,index| %>
+<% columns.each_with_index do |column,index| %>
   #column-<%= column.id %>{
     background-color: <%= column.background_color %>;
     color: <%= column.text_color %>;
@@ -15,7 +15,7 @@
   }
 <% end %>
 
-<% @tags.each_with_index do |tag| %>
+<% tags.each_with_index do |tag| %>
   .tag-<%= tag.id %>{
     background-color: <%= tag.background_color %>;
     color: <%= tag.text_color %>;

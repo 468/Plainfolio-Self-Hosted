@@ -1,5 +1,5 @@
 <style>
-  <%= render partial: 'custom_colors.css.erb' %>
+  <%= render "custom_colors.css", tags: @tags %>
 </style>
 <div id='top-bar'><%= link_to '<i class="fa fa-home"></i>'.html_safe, root_path %></div>
 <main>
