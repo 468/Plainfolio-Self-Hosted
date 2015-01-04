@@ -41,6 +41,7 @@ include Helpers
     expect(portfolio.tags.count).to eq(0)
   end
 
+
   scenario 'should let admin edit tag' do
     sign_in(admin.username,admin.password)
     visit tags_path
@@ -50,6 +51,14 @@ include Helpers
     end
     expect(page).to have_text("New Tag Name")
     expect(portfolio.tags.first.name).to eq('New Tag Name')
+  end
+
+  scenario 'should load tag management page correctly when zero tags exist' do
+    portfolio.tags.each {|tag| tag.destroy }
+    expect(portfolio.tags.count).to eq(0)
+    sign_in(admin.username,admin.password)
+    visit tags_path
+    expect(page).to have_text("No tags currently exist.")
   end
 
 end

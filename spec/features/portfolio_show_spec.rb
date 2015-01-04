@@ -20,6 +20,13 @@ feature "Portfolio show page" do
   	expect(page).to have_css('.column', count: 2) # default showing column count is 4
   end
 
+  scenario "should show portfolio even when no entries exist" do
+    portfolio.entries.each {|entry| entry.destroy }
+    expect(portfolio.entries.count).to eq(0)
+    visit portfolios_path
+    expect(page).to have_text(portfolio.title)
+  end
+
   feature "pagination" do
 
     let!(:admin) { FactoryGirl.create(:admin) }

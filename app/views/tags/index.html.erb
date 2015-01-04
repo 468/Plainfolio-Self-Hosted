@@ -7,7 +7,7 @@
 <h1 class='big-form-banner'>Manage Tags</h1>
 <p class='back'><%= fa_icon 'home' %> <%= link_to 'Back to portfolio', portfolios_path %></p>
 
-<% if @tags %>
+<% if @tags.count > 0  %>
   <% @tags.each do |tag| %>
     <div class = 'tag-edit-box'>
     <%= content_tag :span, id: "tag-#{tag.id}", class: "tag" do %>
@@ -26,6 +26,8 @@
     <% end %>
   </div>
   <% end %>
+<% else %>
+  <p>No tags currently exist.</p>
 <% end %>
 
 <h1 class='big-form-banner'>Create Tag</h1>
