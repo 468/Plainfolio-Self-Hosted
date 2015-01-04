@@ -23,5 +23,13 @@ class Entry < ActiveRecord::Base
     self.external_url = "http://#{url}" unless url=~/^https?:\/\//
   end
 
+  def on_show?
+    if self.column.on_show?
+      true
+    else
+      false
+    end
+  end
+
 
 end

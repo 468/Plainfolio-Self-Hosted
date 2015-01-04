@@ -31,7 +31,7 @@ class GeneratePDF
   	sanitize_config = Sanitize::Config.merge(Sanitize::Config::BASIC, :elements => Sanitize::Config::BASIC[:elements] + ['color'], :attributes => { 'a' => ['href', 'title'], 'color' => ['rgb'], 'img'  => ['alt', 'src', 'title']} )
   	summary = entry.summary
   	content = entry.content
-    url = entry.portfolio.url
+    url = @portfolio.url
   	summary_pics = get_pics(Nokogiri::HTML(summary) )
   	content_pics = get_pics(Nokogiri::HTML(content) )
   	if entry.external_title_link

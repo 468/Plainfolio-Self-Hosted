@@ -22,6 +22,10 @@ class Column < ActiveRecord::Base
   	end
   end
 
+  def on_show?
+    self.show
+  end
+
   def change_column_positions(old_position, new_position, column_to_replace)
     if !(column_to_replace)
       errors.add :base, "Tried to move to position that doesn't exist"
