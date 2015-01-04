@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
- 
 
   def new
     if !(admin_exists?)

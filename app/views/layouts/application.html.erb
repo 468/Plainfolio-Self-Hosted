@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- Plainfolio Version 0.1 -->
   <% if portfolio_exists? %>
     <title><%= get_portfolio.title %></title>
   <% else %>
@@ -30,7 +31,6 @@
   <span id='flash-close'><%= link_to '<i class="fa fa-times"></i>'.html_safe, 'javascript:;' %></span>
   </div>
 <% end %>
-
 
 <%= yield %>
 

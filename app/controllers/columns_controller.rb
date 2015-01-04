@@ -1,7 +1,6 @@
 class ColumnsController < ApplicationController
   before_action :get_portfolio
   before_action :authorize
-  
   def update
     @column = @portfolio.columns.find(params[:id])
     respond_to do |format|

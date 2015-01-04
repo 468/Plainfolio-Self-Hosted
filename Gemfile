@@ -36,6 +36,7 @@ gem 'thin'
 
 group :development do
   gem "better_errors"
+  gem "bullet"
 end
 
 group :test do
@@ -51,7 +52,6 @@ group :development, :test do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
   gem 'rspec-rails', '~> 3.0.0'
-  gem "bullet", :group => "development"
   gem 'factory_girl_rails'
   gem 'faker'
 end

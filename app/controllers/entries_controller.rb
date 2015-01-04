@@ -54,7 +54,7 @@ class EntriesController < ApplicationController
       flash[:notice] = "Entry successfully updated"
     else
       flash.now[:error] = @entry.errors.empty? ? "Error updating entry" : @entry.errors.full_messages.to_sentence
-      render :edit 
+      render :edit
     end
   end
 
@@ -63,7 +63,7 @@ class EntriesController < ApplicationController
     new_column = Column.find(params[:entry][:column])
     if (current_admin == entry.portfolio.admin && current_admin == new_column.portfolio.admin) && entry.update(column: new_column)
       respond_to do |format|
-        format.js do 
+        format.js do
           render :nothing => true
           flash[:notice] = "Entry moved - displayed chronologically in new column."
         end

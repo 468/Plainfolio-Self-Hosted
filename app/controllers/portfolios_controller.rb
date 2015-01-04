@@ -145,6 +145,4 @@ class PortfoliosController < ApplicationController
     def portfolio_params
       params.require(:portfolio).permit(:title, :font, :font_size, :passworded, :password, :url, :pdf_enabled, :rss_enabled)
     end
-
-  
 end

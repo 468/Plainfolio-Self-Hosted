@@ -31,7 +31,7 @@ class AdminsController < ApplicationController
       flash[:notice] = "Admin successfully updated"
     else
       flash.now[:error] = @admin.errors.empty? ? "Error updating admin" : @admin.errors.full_messages.to_sentence
-      render :edit 
+      render :edit
     end
   end
 

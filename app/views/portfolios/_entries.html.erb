@@ -1,8 +1,8 @@
 <% entries.each do |entry| %>
   <%= content_tag :div, class: admin_signed_in?  ? "entry grabbable" : "entry", id: "entry-#{entry.slug}" do %>
   <h3 class='entry-title'>
-    <% if entry.sticky == true %> 
-      <%= fa_icon "asterisk" %> 
+    <% if entry.sticky == true %>
+      <%= fa_icon "asterisk" %>
     <% end %>
     <% if entry.title_link == true %>
       <%= link_to entry.title, entry_path(entry) %>

@@ -1,0 +1,30 @@
+// Place all the styles related to the Home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#news{
+	.news-title{
+		font-weight:bold;
+		font-size:1.1em;
+		padding:5px;
+		background-color:#FF7878;
+		display:inline;
+	}
+
+	& .date{
+		font-weight:normal;
+		font-style:italic;
+		font-size:0.6em;
+	}
+
+	& ul{
+		padding: 0;
+    	list-style-type: none;
+    	-webkit-padding-start: 0;
+
+    	& li{
+    		margin: 12px 0;
+    		font-size:0.9em;
+    	}
+	}
+}

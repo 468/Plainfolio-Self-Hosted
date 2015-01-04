@@ -2,7 +2,7 @@ $(document).ready(function(){
 // initialize wysiwyg editors for entry creation form
 
 $("#entry_summary").cleditor({
-	width: 700,
+	  width: 700,
     height: 260
 });
 $("#entry_content").cleditor({
@@ -29,7 +29,6 @@ $('#entry_title_link').change(function(){
   }
 });
 
-
 $('#entry_external_title_link').change(function(){
   if($(this).is(':checked')){
     $('#external-url-form').slideDown();
@@ -45,6 +44,5 @@ $( "#entry_title" ).keyup(function() {
   var title = $("#entry_title").val().replace(/[_\W]+/g, "-").toLowerCase();
   $('#permalink').val('<%= Portfolio.first.url unless Portfolio.first.nil? %>/' + title )
 });
-
 
 });

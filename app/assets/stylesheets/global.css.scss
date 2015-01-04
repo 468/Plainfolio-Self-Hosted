@@ -64,23 +64,6 @@ h4{
 	margin:0;
 }
 
-input {
-    border: 1px solid #111;
-    background-color:snow;
-}
-
-button {
-  cursor:pointer
-}
-
-button{
-	border: 1px solid #111;
-background: none repeat scroll 0% 0% transparent;
-}
-
-input:hover {
-}
-
 .tag{
 display:inline-block;
 padding: 1px 4px;
@@ -107,6 +90,25 @@ font-size: 0.85em;
 	display:inline;
 }
 
+/* buttons & inputs */
+
+input {
+    border: 1px solid #111;
+    background-color:snow;
+}
+
+button {
+  cursor:pointer
+}
+
+button{
+  border: 1px solid #111;
+background: none repeat scroll 0% 0% transparent;
+}
+
+input:hover {
+}
+
 .btn {
 	padding: 0px 10px;
 	text-decoration: none;
@@ -130,6 +132,18 @@ font-size: 0.85em;
 
 }
 
+input:hover{
+  background-color:snow;
+}
+
+input:focus {
+    outline-width: 0;
+}
+
+.fa-pencil-square:hover{
+  cursor: pointer;
+}
+
 
 /* minicolors overrides */
 
@@ -151,18 +165,7 @@ font-size: 0.85em;
 	cursor: pointer !important;
 }
 
-
-input:hover{
-	background-color:snow;
-}
-
-input:focus {
-    outline-width: 0;
-}
-
-.fa-pencil-square:hover{
-	cursor: pointer;
-}
+/* flash notices */
 
 #flash_notice, #flash_error, #flash_alert{
 	left: 0;
@@ -227,7 +230,7 @@ input:focus {
 
 .big-form{
   padding:15px;
-  border: 1px dashed #111;
+  border: 10px solid #111;
   display:block;
   width:50%;
   margin:0 auto;
@@ -337,24 +340,8 @@ h1.big-form-banner{
   cursor: pointer;
 }
 
-#bottom-bar{
-  position:fixed;
-  z-index:2;
-  bottom:0px;
-  height:20px;
-  line-height:20px;
-  background-color:#333;
-  color:snow;
-  width:100%;
-  right:0;
-  display:block;
-  font-size:0.6em;
-  text-align:center;
-}
 
-#bottom-bar a{
-  color:snow;
-}
+/* top bar as seen on admin account page, tag edit page, etc */
 
 #top-bar{
   position:absolute;
