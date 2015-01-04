@@ -52,13 +52,14 @@ class Portfolio < ActiveRecord::Base
 
   # -- default setup end --
 
-  # handles conversion to csv file
+  #  conversion to csv file
   def as_csv
     CSV.generate do |csv|
       csv << [self.title]
       self.columns.positioned.each do |column|
+        csv << [column.name]
         column.entries.stickies_first.each do |entry|
-          csv << [entry.column.name, entry.title, entry.summary, entry.content]
+          csv << [nil, entry.title, entry.summary, entry.content]
         end
       end
     end
