@@ -59,7 +59,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'best_in_place', :git => 'https://github.com/bernat/best_in_place.git'
+gem 'best_in_place', '~> 3.0.1'
 gem "font-awesome-rails"
 gem 'jquery-minicolors-rails'
 gem 'will_paginate', '~> 3.0'
