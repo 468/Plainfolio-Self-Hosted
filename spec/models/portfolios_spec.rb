@@ -57,7 +57,7 @@ RSpec.describe Portfolio, :type => :model do
     it "should automatically create default column entries upon creation" do
       expect(a.columns.positioned.first.entries.count).to eq(2)
       expect(a.columns.positioned.second.entries.count).to eq(2)
-      expect(a.columns.positioned.second.entries.positioned.first.tags.count).to eq(1)
+      expect(a.columns.positioned.second.entries.stickies_first.first.tags.count).to eq(1)
     end
   end
 

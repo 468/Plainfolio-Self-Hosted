@@ -3,7 +3,7 @@ xml.rss :version => "2.0" do
   xml.channel do
     xml.title "#{@portfolio.title}"
     xml.link @portfolio_path
-    @portfolio.entries.reorder('created_at desc').includes(:column).each do |entry|
+    @portfolio.entries.order('created_at desc').includes(:column).each do |entry|
       return if entry.column.show == false
       xml.item do
         xml.title entry.title

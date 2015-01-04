@@ -37,7 +37,7 @@ class EntriesController < ApplicationController
     @column = @entry.column
 
     @first_column = @portfolio.columns.first
-    @first_column_entries = @first_column.entries.includes(:tags).order('id DESC')
+    @first_column_entries = @first_column.entries.stickies_first.includes(:tags)
   end
 
   def edit

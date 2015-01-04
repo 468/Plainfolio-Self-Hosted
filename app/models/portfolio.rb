@@ -44,10 +44,10 @@ class Portfolio < ActiveRecord::Base
   end
 
   def create_example_entries(example_tag_id)
-    self.columns.first.entries.create(title: "Logging In", portfolio: self, summary: "In future you can access this admin area by signing in at <a href='http://www.plainfolio.com'>plainfolio.com</a> and clicking 'Your Portfolio.")
-    self.columns.first.entries.create(title: "Hello", portfolio: self, summary: "This column is your 'main' column -- it is shown on all pages and isn't affected by tag sorting. A good place to put contact info, an 'about me' paragraph, links to other websites/social media accounts, etc.")
-    self.columns.second.entries.create(title: "Example Entry II",portfolio: self, summary: "<iframe width='560' height='315' src='//www.youtube.com/embed/HelnM33rZ3w' frameborder='0' allowfullscreen></iframe><br>Video embed example. You can embed videos by clicking the <img src='http://i.imgur.com/HYlR2tC.png' alt='Edit Code Icon' /> button on the text editor and pasting your embed code.", content: "Extra interior page content here.", title_link: true, :tag_ids => [example_tag_id])
-    self.columns.second.entries.create(title: "Example entry", portfolio: self, summary: "This is an example entry tagged with an example tag.", :tag_ids => [example_tag_id])
+    self.columns.positioned.first.entries.create(title: "Logging In", portfolio: self, summary: "In future you can access this admin area by signing in at <a href='http://www.plainfolio.com'>plainfolio.com</a> and clicking 'Your Portfolio.")
+    self.columns.positioned.first.entries.create(title: "Hello", portfolio: self, summary: "This column is your 'main' column -- it is shown on all pages and isn't affected by tag sorting. A good place to put contact info, an 'about me' paragraph, links to other websites/social media accounts, etc.")
+    self.columns.positioned.second.entries.create(title: "Example Entry II",portfolio: self, summary: "<iframe width='560' height='315' src='//www.youtube.com/embed/HelnM33rZ3w' frameborder='0' allowfullscreen></iframe><br>Video embed example. You can embed videos by clicking the <img src='http://i.imgur.com/HYlR2tC.png' alt='Edit Code Icon' /> button on the text editor and pasting your embed code.", content: "Extra interior page content here.", title_link: true, :tag_ids => [example_tag_id])
+    self.columns.positioned.second.entries.create(title: "Example entry", portfolio: self, summary: "This is an example entry tagged with an example tag.", :tag_ids => [example_tag_id])
   end
 
   # -- default setup end --
@@ -57,7 +57,7 @@ class Portfolio < ActiveRecord::Base
     CSV.generate do |csv|
       csv << [self.title]
       self.columns.positioned.each do |column|
-        column.entries.each do |entry|
+        column.entries.stickies_first.each do |entry|
           csv << [entry.column.name, entry.title, entry.summary, entry.content]
         end
       end

@@ -16,9 +16,9 @@ class Column < ActiveRecord::Base
 
   def get_entries(tag=false)
   	if tag
-  	  self.entries.includes(:tags).joins(:tags).where(:tags => { :name => tag })
+  	  self.entries.stickies_first.includes(:tags).joins(:tags).where(:tags => { :name => tag })
   	else
-  	  self.entries.includes(:tags)
+  	  self.entries.stickies_first.includes(:tags)
   	end
   end
 

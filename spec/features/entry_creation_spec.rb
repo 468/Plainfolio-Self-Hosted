@@ -12,15 +12,15 @@ feature "Entry creation" do
     create_entry(admin, portfolio, 'test title', 'test summary')
     expect(page).to have_text("test title")
     expect(page).to have_text("test summary")
-    expect(portfolio.entries.first.title).to eq('test title')
-    expect(portfolio.entries.first.summary).to eq('test summary')
+    expect(portfolio.entries.stickies_first.first.title).to eq('test title')
+    expect(portfolio.entries.stickies_first.first.summary).to eq('test summary')
   end
 
   scenario "should allow entry to be tagged" do
     create_entry(admin, portfolio, 'test title', 'test summary', false)
     page.check('entry_tag_ids_')
     click_button('Create Entry')
-    expect(portfolio.entries.first.tags.count).to be >0
+    expect(portfolio.entries.stickies_first.first.tags.count).to be >0
   end
 
   scenario "should have title link to interior page if option is checked" do
@@ -29,7 +29,7 @@ feature "Entry creation" do
     fill_in('entry[content]', :with => 'test entry interior content')
     click_button('Create Entry')
     expect(page).to have_text("test title 3")
-    entry = portfolio.entries.first
+    entry = portfolio.entries.stickies_first.first
     expect(page).to have_link('test title 3', href: entry_path(entry))
   end
 
@@ -39,7 +39,7 @@ feature "Entry creation" do
     fill_in('entry[external_url]', :with => 'http://www.example.com')
     click_button('Create Entry')
     expect(page).to have_text("test title 4")
-    entry = portfolio.entries.first
+    entry = portfolio.entries.stickies_first.first
     expect(page).to have_link('test title 4', href: 'http://www.example.com')
   end
 
@@ -97,7 +97,7 @@ feature "Entry creation" do
 
   scenario "friendly_id title param" do
     create_entry(admin, portfolio, 'entry title', 'interior')
-    expect(portfolio.entries.first.slug).to eq("entry-title")
+    expect(portfolio.entries.stickies_first.first.slug).to eq("entry-title")
   end
 
 end

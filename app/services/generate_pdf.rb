@@ -19,7 +19,7 @@ class GeneratePDF
     portfolio.columns.positioned.where(show: true).each do |column|
       pdf.text "#{column.name}:", size: 20, style: :bold
       pdf.move_down 15
-      column.entries.each do |entry|
+      column.entries.stickies_first.each do |entry|
         format_for_pdf(entry, pdf)
         pdf.move_down 15
       end

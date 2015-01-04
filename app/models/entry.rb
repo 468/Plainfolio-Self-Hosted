@@ -15,7 +15,8 @@ class Entry < ActiveRecord::Base
 
   before_validation :format_url, :if => lambda {|entry| entry.external_url_changed?  }
 
-  default_scope -> { order(sticky: :desc, created_at: :desc) }
+  scope :stickies_first, -> { order(sticky: :desc, created_at: :desc) }
+
 
   def format_url
     url = self.external_url
