@@ -1,9 +1,9 @@
 <%= content_tag :div, id: "output-buttons" do %>
-  <% if @portfolio.pdf_enabled? %>
+  <% if pdf_enabled %>
     <div id='pdf-button'><%= link_to "<i class='fa fa-file-text-o'></i> .pdf".html_safe, pdf_path %></div>
   <% end %>
 
-  <% if @portfolio.rss_enabled? %>
+  <% if rss_enabled %>
     <div id='rss-button'><%= link_to "<i class='fa fa-rss'></i> .rss".html_safe, rss_path %></div>
   <% end %>
 

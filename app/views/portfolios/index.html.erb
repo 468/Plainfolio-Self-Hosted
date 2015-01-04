@@ -26,4 +26,4 @@
     <% end %>
   <% end %>
 <% end %>
-<%= render "footer" %>
+<%= render "footer", rss_enabled: @portfolio.rss_enabled?, pdf_enabled: @portfolio.pdf_enabled? %>
