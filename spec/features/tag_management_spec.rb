@@ -9,7 +9,7 @@ include Helpers
   let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
   scenario 'should let admin create tag' do
-    sign_in(admin.email,admin.password)
+    sign_in(admin.username,admin.password)
     visit tags_path
     within('#new_tag') do
       fill_in('tag[name]', :with => 'test tag')
@@ -21,7 +21,7 @@ include Helpers
   end
 
   scenario 'should reload form & show error message when invalid data sent' do
-    sign_in(admin.email,admin.password)
+    sign_in(admin.username,admin.password)
     visit tags_path
     within('#new_tag') do
       fill_in('tag[name]', :with => '')
@@ -34,7 +34,7 @@ include Helpers
   end
 
   scenario 'should let admin delete tag' do
-    sign_in(admin.email,admin.password)
+    sign_in(admin.username,admin.password)
     visit tags_path
     click_link('Delete Tag')
     expect(page).to have_text("Tag deleted.")
@@ -42,7 +42,7 @@ include Helpers
   end
 
   scenario 'should let admin edit tag' do
-    sign_in(admin.email,admin.password)
+    sign_in(admin.username,admin.password)
     visit tags_path
     within('.tag-edit-box') do
       fill_in('tag[name]', :with => 'New Tag Name')

@@ -8,7 +8,7 @@ feature "Portfolio create" do
   let!(:admin) { FactoryGirl.create(:admin) }
 
   scenario "rejects blank name" do
-  	sign_in(admin.email,admin.password)
+  	sign_in(admin.username,admin.password)
     visit new_portfolio_path
     fill_in('portfolio[title]', with: '')
 	  click_button('Create Portfolio')
@@ -16,7 +16,7 @@ feature "Portfolio create" do
   end
 
   scenario "redirects to new portfolio on creation" do
-    sign_in(admin.email,admin.password)
+    sign_in(admin.username,admin.password)
     visit new_portfolio_path
     fill_in('portfolio[title]', with: 'Test')
     fill_in('portfolio[url]', with: 'http://www.example.com')

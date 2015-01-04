@@ -8,18 +8,18 @@ feature 'admin signs in' do
   end
 
   scenario 'with valid information' do
-    sign_in(@admin.email, @admin.password)
+    sign_in(@admin.username, @admin.password)
     expect(page).to have_text("Sign Out")
   end
 
   scenario 'with invalid password' do
-    sign_in(@admin.email, 'invalid')
-    expect(page).to have_text("Email or password is invalid")
+    sign_in(@admin.username, 'invalid')
+    expect(page).to have_text("Username or password is invalid")
   end
 
-  scenario 'with invalid email' do
+  scenario 'with invalid username' do
     sign_in('invalid', @admin.password)
-    expect(page).to have_text("Email or password is invalid")
+    expect(page).to have_text("Username or password is invalid")
   end
 
 end

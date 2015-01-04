@@ -8,7 +8,7 @@ RSpec.describe Admin, :type => :model do
 
   let (:admin) {FactoryGirl.create(:admin)}
   subject { admin }
-  it { should validate_presence_of(:email) }
+  it { should validate_presence_of(:username) }
   it { should have_one(:portfolio) }
 
   describe "account creation" do
@@ -22,18 +22,18 @@ RSpec.describe Admin, :type => :model do
       expect(FactoryGirl.build(:admin, password: "", password_confirmation: "")).to be_invalid
     end
 
-    it "is invalid with blank email" do
-      expect(FactoryGirl.build(:admin, email: "")).to be_invalid
+    it "is invalid with blank username" do
+      expect(FactoryGirl.build(:admin, username: "")).to be_invalid
     end
 
     it "is invalid with non-matching password" do
       expect(FactoryGirl.build(:admin, password: "notmatching")).to be_invalid
     end
 
-    it "is invalid with non-unique email" do
-      admin = FactoryGirl.create(:admin, email: "hello@example.com")
+    it "is invalid with non-unique username" do
+      admin = FactoryGirl.create(:admin, username: "hello")
       expect(admin).to be_valid
-      expect(FactoryGirl.build(:admin, email: "hello@example.com")).to be_invalid
+      expect(FactoryGirl.build(:admin, username: "hello")).to be_invalid
     end
   end
 

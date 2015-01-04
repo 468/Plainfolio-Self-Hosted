@@ -3,7 +3,7 @@
   <%= content_tag :div, class: 'big-form' do %>
     <h1 class='big-form-banner'>Log In</h1>
     <%= form_tag sessions_path do %>
-      <p class='big-form-text'><%= text_field_tag :email, params[:email], autofocus: true, placeholder: 'Email' %></p>
+      <p class='big-form-text'><%= text_field_tag :username, params[:username], autofocus: true, placeholder: 'Username' %></p>
       <p class='big-form-text'><%= password_field_tag :password, params[:password], autocomplete: "off", placeholder: 'Password' %></p>
       <p><%= submit_tag "Log in" %></p>
     <% end %>

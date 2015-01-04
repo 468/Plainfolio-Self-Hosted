@@ -7,7 +7,7 @@
       <p class='form-error-message'><%= msg %></p>
     <% end %>
     <%= form_for @admin do |f| %>
-      <p class='big-form-text'><%= f.text_field :email, autofocus: true, placeholder: 'Email' %></p>
+      <p class='big-form-text'><%= f.text_field :username, autofocus: true, placeholder: 'Username' %></p>
       <p class='big-form-text'><%= f.password_field :password, placeholder: 'Password' %></p>
       <p class='big-form-text'><%= f.password_field :password_confirmation, placeholder: 'Password confirmation' %></p>
       <p><%= f.submit "Sign Up" %></p>

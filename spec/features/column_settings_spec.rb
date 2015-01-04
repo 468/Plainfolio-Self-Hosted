@@ -8,7 +8,7 @@ let!(:admin) { FactoryGirl.create(:admin) }
 let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
   scenario "menu should show when portfolio owner signed in" do
-  	sign_in(admin.email,admin.password)
+  	sign_in(admin.username,admin.password)
     visit portfolios_path
     expect(page).to have_text("Column Settings")
   end
@@ -24,7 +24,7 @@ let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 	  let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
     scenario "with valid color" do
-      sign_in(admin.email,admin.password)
+      sign_in(admin.username,admin.password)
       visit portfolios_path
       within first(".column") do
  	    find('.btn', :text => "Column Settings")
@@ -41,7 +41,7 @@ let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
     end
 
     scenario "with invalid color" do
-      sign_in(admin.email,admin.password)
+      sign_in(admin.username,admin.password)
       visit portfolios_path
       within first(".column") do
  	    find('.btn', :text => "Column Settings")
@@ -61,7 +61,7 @@ let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
   feature "Edit entries per page" do
 
   	scenario "with valid selection" do
-  	  sign_in(admin.email,admin.password)
+  	  sign_in(admin.username,admin.password)
       visit portfolios_path
       within first(".column") do
  	    find('.btn', :text => "Column Settings")
@@ -80,7 +80,7 @@ let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
   feature "Hide/Unhide button" do
     # functionality for toggle_show (hide/unhide) is tested in column controller spec
   	scenario "should not seen on first column" do
-  	  sign_in(admin.email,admin.password)
+  	  sign_in(admin.username,admin.password)
       visit portfolios_path
       within first(".column") do
  	    find('.btn', :text => "Column Settings")
@@ -89,7 +89,7 @@ let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
     end
 
   	scenario "should show hide option when column is unhidden" do
-  	  sign_in(admin.email,admin.password)
+  	  sign_in(admin.username,admin.password)
       visit portfolios_path
       within("#column-#{portfolio.columns.second.id}") do
  	    find('.btn', :text => "Hide this column?")
@@ -98,7 +98,7 @@ let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
     scenario "should show unhide option when column is hidden" do
       portfolio.columns.second.update(show: false)
-      sign_in(admin.email,admin.password)
+      sign_in(admin.username,admin.password)
       visit portfolios_path
       within("#column-#{portfolio.columns.second.id}") do
  	    find('.btn', :text => "Show this column?")

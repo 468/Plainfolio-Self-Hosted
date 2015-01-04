@@ -16,7 +16,7 @@ feature "portfolio protection" do
     end
 
     scenario "shouldn't appear for portfolio owner" do
-  	  sign_in(admin.email,admin.password)
+  	  sign_in(admin.username,admin.password)
       visit portfolio_path(portfolio)
       expect(page).to_not have_text("This portfolio is password protected")
     end

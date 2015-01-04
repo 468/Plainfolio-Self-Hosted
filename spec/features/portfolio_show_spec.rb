@@ -26,7 +26,7 @@ feature "Portfolio show page" do
     let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
     scenario "should limit entries shown per column to column's entries_per_page count" do
-      sign_in(admin.email,admin.password)
+      sign_in(admin.username,admin.password)
       5.times { create_entry(admin, portfolio, 'test', 'test', true, true) }
       portfolio.columns.first.update(entries_per_page: 2)
       visit portfolios_path

@@ -8,7 +8,7 @@ feature "Best in place" do
   let!(:portfolio) { FactoryGirl.create(:portfolio, admin: admin) }
 
   scenario "should show when portfolio owner signed in" do
-  	sign_in(admin.email,admin.password)
+  	sign_in(admin.username,admin.password)
     visit portfolios_path
     expect(page.has_css?('.fa-pencil-square')).to be true
   end
